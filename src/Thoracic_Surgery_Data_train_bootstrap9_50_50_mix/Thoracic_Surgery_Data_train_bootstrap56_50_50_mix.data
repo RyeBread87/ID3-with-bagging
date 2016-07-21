@@ -1,0 +1,203 @@
+// The structure of this dataset is described below.
+// (we're using a very restricted design for simplicity).
+
+// You can visit
+//    http://archive.ics.uci.edu/ml/datasets/Thoracic+Surgery+Data
+// to see more about this dataset.
+
+// NOTE: Your code should handle both Windows-formatted and Linux-formatted files
+// (which, unfortunately, differ in how the end of line is represented).
+
+// Your code should HANDLE ANY AMOUNT OF 'white space,' including blank lines, BETWEEN TOKENS.
+
+// Note that you only need to handle '//' comments (ie, there will be no "/* */" comments.
+// It is easy in Java to the contents of a string BEFORE any '//' (might get the empty string,
+// which should also be ignored).
+
+// The number of features:
+31
+
+// Next are the feature names followed by a dash and then the legal values of this feature
+// In the CS 540 programming HWs related to decision trees, we will assume that all features have
+// two possible values, though they might have names other than the T and F used here (eg,
+// might have: "size - small big" in some other testbed used during grading).
+
+// Converted DGN from ONE feature with SEVEN legal values to SEVEN Boolean-valued features.
+diagnosisIsDGN3 - T F
+diagnosisIsDGN2 - T F
+diagnosisIsDGN4 - T F
+diagnosisIsDGN6 - T F
+diagnosisIsDGN5 - T F
+diagnosisIsDGN7 - T F
+diagnosisIsDGN1 - T F
+
+// Converted PREV4 by looking at plus/minus one std deviation from the mean.
+lowFVC    - T F
+mediumFVC - T F
+highFVC   - T F
+
+// Converted PREV5  by looking at plus/minus one std deviation from the mean.
+// HOWEVER used 2.0 as the lower threshold since mean - stdDev was less than the minimum value.
+lowVolume    - T F
+mediumVolume - T F
+highVolume   - T F
+
+// Converted PRE6 (see https://en.wikipedia.org/wiki/Performance_status#ECOG.2FWHO.2FZubrod_score)
+// to a 'thermometer scale' (explained in class)/  Ie, PRZ2 = T T, PRZ1 = T F, and PRZ0 = F F (not sure why Wikepedia lists FIVE, though 'death' would be give away).
+ZubrodaAtLeast1 - T F
+ZubrodaAtLeast2 - T F
+
+//PRE7, PRE8, PRE9, PRE10, and PRE11 renamed but otherwise unchanged since already Boolean valued.
+painBeforeSurgery        - T F
+haemoptysisBeforeSurgery - T F 
+dyspnoeaBeforeSurgery    - T F
+coughBeforeSurgery       - T F
+weaknessBeforeSurgery    - T F
+
+// Converted PRe14 converted to a thermometer rep.  OC11 taken to be 'verySmall' and OC13 taken to be 'large.'
+tumorAtLeastSmall  - T F
+tumorAtLeastMedium - T F
+tumorAtLeastLarge  - T F
+
+// PRE17, PRE19, PRE25, and PRE30 renamed but otherwise unchanged since already Boolean valued.
+diabetesMellitus           - T F
+recentMyocardialInfarction - T F 
+peripheralArterialDiseases - T F
+smoker                     - T F
+asthmatic                  - T F
+
+// Converted AGE by looking at plus/minus one std deviation from the mean.
+// Note: 'young' is 'young' with respect to (wrt) this dataset, not wrt the general population.
+young     - T F
+middleAge - T F
+old       - T F
+
+// The class labels (unless stated otherwise, we assume for cs540 HWs, for simplicity, that only TWO values are possible):
+lived
+died
+
+// The original fields, copied verbatim from http://archive.ics.uci.edu/ml/datasets/Thoracic+Surgery+Data
+//  1. DGN: Diagnosis - specific combination of ICD-10 codes for primary and secondary as well multiple tumours if any (DGN3,DGN2,DGN4,DGN6,DGN5,DGN8,DGN1)
+//  2. PRE4: Forced vital capacity - FVC (numeric)
+//  3. PRE5: Volume that has been exhaled at the end of the first second of forced expiration - FEV1 (numeric)
+//  4. PRE6: Performance status - Zubrod scale (PRZ2,PRZ1,PRZ0)
+//  5. PRE7: Pain before surgery (T,F)
+//  6. PRE8: Haemoptysis before surgery (T,F)
+//  7. PRE9: Dyspnoea before surgery (T,F)
+//  8. PRE10: Cough before surgery (T,F)
+//  9. PRE11: Weakness before surgery (T,F)
+// 10. PRE14: T in clinical TNM - size of the original tumour, from OC11 (smallest) to OC14 (largest) (OC11,OC14,OC12,OC13)
+// 11. PRE17: Type 2 DM - diabetes mellitus (T,F)
+// 12. PRE19: MI up to 6 months (T,F)
+// 13. PRE25: PAD - peripheral arterial diseases (T,F)
+// 14. PRE30: Smoking (T,F)
+// 15. PRE32: Asthma (T,F)
+// 16. AGE: Age at surgery (numeric)
+// 17. Risk1Y: 1 year survival period - (T)rue value if died (T,F) 
+
+
+/////////////////////////////
+
+// The number of examples (will read this many in; ok to have more in the file)
+90
+
+// The examples (as mentioned above, we assume, for simplicity, that all features are BOOLEAN-VALUED, 
+// *though the names of the two values might differ across datasets*)
+
+//   First is the example's name, then its category, finally followed
+//   by the values of all of its features (listed in the order of the
+//   feature names above, will be separated by "whitespace"). 
+//   The (boring) names are simply used to concisely identify the examples.
+//   Your decision-tree learner should NOT use these names as a feature (what would happen if you did?).
+
+posTrainBootstrap56Ex1 lived  T F F F F F F F T F F T F T F F F F T F T T F F F F T F F F T // Was original pos #6.
+posTrainBootstrap56Ex2 lived  T F F F F F F F F T F T F T F F F F T F T T F T F F T F F T F // Was original pos #0.
+posTrainBootstrap56Ex3 lived  T F F F F F F F T F T F F T F F F F T F T T F F F F T F F T F // Was original pos #35.
+posTrainBootstrap56Ex4 lived  T F F F F F F F T F F T F T F F F F T F T T F F F F T F F T F // Was original pos #29.
+posTrainBootstrap56Ex5 lived  T F F F F F F F T F T F F T F F T T T F T T T F F F F F F T F // Was original pos #19.
+posTrainBootstrap56Ex6 lived  T F F F F F F F T F T F F T F F T T T F T T T F F F F F F T F // Was original pos #19.
+posTrainBootstrap56Ex7 lived  T F F F F F F T F F T F F T F F F F T F T F F F F F T F F T F // Was original pos #15.
+posTrainBootstrap56Ex8 lived  F T F F F F F F T F F T F T T F F F T T T F F F F F T F F F T // Was original pos #2.
+posTrainBootstrap56Ex9 lived  T F F F F F F F F T F T F T T T F F T T T T T F F F F F F F T // Was original pos #37.
+posTrainBootstrap56Ex10 lived  T F F F F F F T F F T F F F F F F F F F T T F F F F T F F F T // Was original pos #40.
+posTrainBootstrap56Ex11 lived  F F T F F F F F T F F T F T F F F F T T T T F T F F T F F T F // Was original pos #44.
+posTrainBootstrap56Ex12 lived  F F T F F F F T F F T F F F F F F F F F T T F F F F T F F F T // Was original pos #16.
+posTrainBootstrap56Ex13 lived  T F F F F F F F T F T F F T T F F T T T T T F F F F T F F F T // Was original pos #32.
+posTrainBootstrap56Ex14 lived  T F F F F F F F F T F T F T F F F F T F T T F T F F T F F T F // Was original pos #0.
+posTrainBootstrap56Ex15 lived  T F F F F F F F T F F T F T T F F F T T F F F F F F T F F F T // Was original pos #31.
+posTrainBootstrap56Ex16 lived  T F F F F F F F T F F T F T F T F F T T F F F T F F T F F F T // Was original pos #7.
+posTrainBootstrap56Ex17 lived  T F F F F F F F T F T F F T T F F T T T T T F F F F T F F F T // Was original pos #32.
+posTrainBootstrap56Ex18 lived  T F F F F F F F T F F T F T T F F F T T F F F F F F T F F F T // Was original pos #31.
+posTrainBootstrap56Ex19 lived  T F F F F F F F T F F T F T F F F F T F T T F F F F T F F F T // Was original pos #26.
+posTrainBootstrap56Ex20 lived  T F F F F F F F T F T F F T F F F F T F T T F F F F T F F T F // Was original pos #35.
+posTrainBootstrap56Ex21 lived  F T F F F F F F T F F F T F F F F T F F T T T F F F T F F F T // Was original pos #14.
+posTrainBootstrap56Ex22 lived  F T F F F F F F T F F T F T F F F F T F T T F F F F T F F T F // Was original pos #34.
+posTrainBootstrap56Ex23 lived  T F F F F F F F T F T F F T T F F T T T T T F F F F T F F F T // Was original pos #32.
+posTrainBootstrap56Ex24 lived  T F F F F F F F T F F T F F F F F F F F F F F F F F T F F F T // Was original pos #38.
+posTrainBootstrap56Ex25 lived  T F F F F F F F F T F T F T T T F F T T T T T F F F F F F F T // Was original pos #37.
+posTrainBootstrap56Ex26 lived  T F F F F F F F T F F T F F F F F F F F F F F F F F T F F T F // Was original pos #22.
+posTrainBootstrap56Ex27 lived  T F F F F F F F T F T F F T F F F F T F T T F F F F T F F T F // Was original pos #35.
+posTrainBootstrap56Ex28 lived  F T F F F F F F T F F T F T F F F F T F F F F F F T T F F F T // Was original pos #1.
+posTrainBootstrap56Ex29 lived  F T F F F F F F T F F F T F F F F T F F T T T F F F T F F F T // Was original pos #14.
+posTrainBootstrap56Ex30 lived  T F F F F F F F F T F T F T T T F F T T T T T F F F F F F F T // Was original pos #37.
+posTrainBootstrap56Ex31 lived  F F F F T F F F T F F T F T F F F F T F T T T F F F T F F T F // Was original pos #25.
+posTrainBootstrap56Ex32 lived  T F F F F F F F T F F T F T F T F F F F T T F F F F F F F F T // Was original pos #18.
+posTrainBootstrap56Ex33 lived  F F F F T F F T F F T F F T F F T F T F T T F T F T T F F F T // Was original pos #41.
+posTrainBootstrap56Ex34 lived  T F F F F F F F T F F T F T F F T F T F T T F F F F T F F F T // Was original pos #39.
+posTrainBootstrap56Ex35 lived  T F F F F F F F T F F T F T F F F F T F T T F F F F T F F F T // Was original pos #11.
+posTrainBootstrap56Ex36 lived  T F F F F F F F F T F T F T F T F T T F T T F F F F T F F T F // Was original pos #36.
+posTrainBootstrap56Ex37 lived  T F F F F F F F T F F T F T F F F F T F T T F F F F T F F F T // Was original pos #26.
+posTrainBootstrap56Ex38 lived  T F F F F F F T F F T F F T F F F F T F T F F F F F T F F T F // Was original pos #15.
+posTrainBootstrap56Ex39 lived  T F F F F F F F T F T F F T F F F F T T T T F F F F T F F F T // Was original pos #33.
+posTrainBootstrap56Ex40 lived  T F F F F F F F T F F T F T F F F F T F T T F F F F T F F T F // Was original pos #23.
+posTrainBootstrap56Ex41 lived  T F F F F F F F T F F T F T F T F F T T F F F T F F T F F F T // Was original pos #7.
+posTrainBootstrap56Ex42 lived  T F F F F F F F T F F T F T F F T F T F F F F F F F T F F F T // Was original pos #17.
+posTrainBootstrap56Ex43 lived  F T F F F F F F F T F T F F F F T F T F T F F F F F T F F F T // Was original pos #30.
+posTrainBootstrap56Ex44 lived  T F F F F F F F T F F T F T F F F F T F T T F F F F T F F F T // Was original pos #6.
+posTrainBootstrap56Ex45 lived  T F F F F F F F T F T F F T F F F F T T T T F F F F T F F F T // Was original pos #33.
+negTrainBootstrap56Ex1 died   F T F F F F F F T F F T F T F T T F F F T T T F F F T F F T F // Was 'downsampled' neg #18.
+negTrainBootstrap56Ex2 died   F F F F T F F F T F F F T F F T T F T F T T F F F F F F F T F // Was 'downsampled' neg #40.
+negTrainBootstrap56Ex3 died   T F F F F F F F T F F T F T F F F F T F F F F F T F T F F T F // Was 'downsampled' neg #25.
+negTrainBootstrap56Ex4 died   T F F F F F F F T F F T F T F F F F T F T T F F F F T F F F T // Was 'downsampled' neg #3.
+negTrainBootstrap56Ex5 died   F F T F F F F F F T F T F T F F F F T F T T F F F F T F F F T // Was 'downsampled' neg #7.
+negTrainBootstrap56Ex6 died   T F F F F F F F T F T F F F F F T F T F F F F F F F T F F T F // Was 'downsampled' neg #26.
+negTrainBootstrap56Ex7 died   T F F F F F F F T F F T F F F F F F F F T T F F F F T F F F T // Was 'downsampled' neg #19.
+negTrainBootstrap56Ex8 died   T F F F F F F F F T F T F T F F F F F F T T F F F F T F F T F // Was 'downsampled' neg #1.
+negTrainBootstrap56Ex9 died   T F F F F F F F T F F T F F F F F F F F F F F F F F T F F T F // Was 'downsampled' neg #17.
+negTrainBootstrap56Ex10 died   T F F F F F F F T F F T F F F F F F F F T T F F F F T F F F T // Was 'downsampled' neg #42.
+negTrainBootstrap56Ex11 died   F F F F T F F F T F F F T F F T T F T F T T F F F F F F F T F // Was 'downsampled' neg #40.
+negTrainBootstrap56Ex12 died   F F T F F F F F F T F T F T F F F F T F T T F F F F T F F F T // Was 'downsampled' neg #7.
+negTrainBootstrap56Ex13 died   T F F F F F F T F F T F F T F F F F T F F F F F F F T F F T F // Was 'downsampled' neg #14.
+negTrainBootstrap56Ex14 died   T F F F F F F F T F T F F F F F T F T F F F F F F F T F F T F // Was 'downsampled' neg #26.
+negTrainBootstrap56Ex15 died   T F F F F F F F T F F T F T F F F F T F T T F F F F T F F T F // Was 'downsampled' neg #12.
+negTrainBootstrap56Ex16 died   T F F F F F F F F T F T F T F F F F T F T T F F F F T F F F T // Was 'downsampled' neg #24.
+negTrainBootstrap56Ex17 died   T F F F F F F F T F F T F T F F F F T F T T F F F F T F F F T // Was 'downsampled' neg #3.
+negTrainBootstrap56Ex18 died   F F T F F F F F T F F T F T F T F F F F T T F T F F T F F F T // Was 'downsampled' neg #22.
+negTrainBootstrap56Ex19 died   T F F F F F F F T F F T F T F F F F T F T F F T F F T F F F T // Was 'downsampled' neg #39.
+negTrainBootstrap56Ex20 died   F T F F F F F F T F T F F T T F T F T T T T F F F F T F F F T // Was 'downsampled' neg #29.
+negTrainBootstrap56Ex21 died   F F T F F F F F T F F T F T F T T F T F T T F F F F F F F F T // Was 'downsampled' neg #35.
+negTrainBootstrap56Ex22 died   T F F F F F F F F T F T F F F F F F F F F F F F F F T F F T F // Was 'downsampled' neg #20.
+negTrainBootstrap56Ex23 died   T F F F F F F F T F F T F T F F F F T F T T F F F F T F F T F // Was 'downsampled' neg #23.
+negTrainBootstrap56Ex24 died   T F F F F F F T F F F T F T F F F F T F F F F F F F T F F T F // Was 'downsampled' neg #0.
+negTrainBootstrap56Ex25 died   T F F F F F F F F T F T F T F F F F T F T T F F F F T F F F T // Was 'downsampled' neg #24.
+negTrainBootstrap56Ex26 died   T F F F F F F F T F F T F F F F F F F F T T F F F F T F F F T // Was 'downsampled' neg #42.
+negTrainBootstrap56Ex27 died   F F T F F F F F F T F T F T F F F F T F T T F F F F T F F F T // Was 'downsampled' neg #7.
+negTrainBootstrap56Ex28 died   T F F F F F F T F F T F F T F F F F T F T F F F F F T F F T F // Was 'downsampled' neg #6.
+negTrainBootstrap56Ex29 died   T F F F F F F F T F T F F F F F T F T F F F F F F F T F F T F // Was 'downsampled' neg #26.
+negTrainBootstrap56Ex30 died   F T F F F F F T F F T F F F F F T F F F T T F F F F T F F T F // Was 'downsampled' neg #2.
+negTrainBootstrap56Ex31 died   T F F F F F F F T F T F F T F F F F T F F F F F F F T F F F T // Was 'downsampled' neg #27.
+negTrainBootstrap56Ex32 died   T F F F F F F F T F F T F T F F F F T F T T F F F F T F F T F // Was 'downsampled' neg #23.
+negTrainBootstrap56Ex33 died   T F F F F F F F T F F T F F F F F F F F F F F F F F T F F T F // Was 'downsampled' neg #17.
+negTrainBootstrap56Ex34 died   T F F F F F F F T F T F F T F F F F T F T T F F F F T F F F T // Was 'downsampled' neg #15.
+negTrainBootstrap56Ex35 died   T F F F F F F T F F T F F T F F F F T F F F F F F F T F F T F // Was 'downsampled' neg #14.
+negTrainBootstrap56Ex36 died   T F F F F F F T F F T F F T T F F F T T F F F F F F F F F F T // Was 'downsampled' neg #43.
+negTrainBootstrap56Ex37 died   T F F F F F F F T F F T F F F F F F F F T T F F F F T F F F T // Was 'downsampled' neg #42.
+negTrainBootstrap56Ex38 died   T F F F F F F F F T F T F F F F T F T F T T F F F F F F F T F // Was 'downsampled' neg #37.
+negTrainBootstrap56Ex39 died   T F F F F F F F F T F T F F F F T F T F T T F F F F F F F T F // Was 'downsampled' neg #37.
+negTrainBootstrap56Ex40 died   T F F F F F F F T F F T F F F F F F F F T T F F F F T F F F T // Was 'downsampled' neg #42.
+negTrainBootstrap56Ex41 died   T F F F F F F T F F T F F T T F F F T T F F F F F F T F F T F // Was 'downsampled' neg #32.
+negTrainBootstrap56Ex42 died   T F F F F F F F T F F T F F F F F F F F T T F F F F T F F T F // Was 'downsampled' neg #16.
+negTrainBootstrap56Ex43 died   T F F F F F F F T F F T F T F F F F T F T T F F F F T F F T F // Was 'downsampled' neg #31.
+negTrainBootstrap56Ex44 died   F F T F F F F F T F F T F T F T T F T F T T F F F F F F F F T // Was 'downsampled' neg #35.
+negTrainBootstrap56Ex45 died   T F F F F F F F T F F T F F F F F F F F F F F F F F T F F F T // Was 'downsampled' neg #30.
+

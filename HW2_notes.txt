@@ -1,0 +1,103 @@
+Breadth-First search 
+Step#	OPEN										CLOSED										X		CHILDREN			RemainingCHILDREN
+1		{S_0}										{}											S		{A_4, C_3}			{A_4, C_3}
+2		{A_4, C_3}									{S_0}										A		{B_7, G1_12}		{B_7, G1_12}
+3		{C_3, B_7, G1_12}							{S_0, A_4}									C		{D_5, F_10, J_12}	{D_5, F_10, J_12}
+4		{B_7, G1_12, D_5, F_10, J_12}				{S_0, A_4, C_3}								B		{G1_11, J_9}		{G1_11, J_9}
+5		{G1_12, D_5, F_10, J_12, G1_11, J_9}		{S_0, C_3, A_4, B_7}						G1		{}					{}
+6		{D_5, F_10, J_12}							{S_0, C_3, A_4, B_7, G1_12}					D		{E_7, F_6}			{E_7}
+
+Depth-First search
+Step#	OPEN										CLOSED										X		CHILDREN			RemainingCHILDREN
+1		{S_0}										{}											S		{A_4, C_3}			{A_4, C_3}
+2		{A_4, C_3}									{S_0}										A		{B_7, G1_12}		{B_7, G1_12}
+3		{B_7, G1_12, C_3}							{S_0, A_4}									B		{G1_11, J_9}		{G1_11, J_9}
+4		{G1_12, C_3}								{S_0, A_4, B_7} 							G1		{}					{}
+
+Iterative Deepening (depth limit 1)
+Step#	OPEN										CLOSED										X		CHILDREN			RemainingCHILDREN
+1		{S_0}										{}											S		{A_4, C_3}			{A_4, C_3}
+2		{A_4, C_3}									{S_0}										A		{B_7, G1_12}		{B_7, G1_12}
+3		{C_3, B_7, G1_12}							{S_0, A_4}									C		{D_5, F_10, J_12}	{D_5, F_10, J_12}
+
+Iterative Deepening (depth limit 2)
+Step#	OPEN										CLOSED										X		CHILDREN			RemainingCHILDREN
+1		{S_0}										{}											S		{A_4, C_3}			{A_4, C_3}
+2		{A_4, C_3}									{S_0}										A		{B_7, G1_12}		{B_7, G1_12}
+3		{B_7, G1_12, C_3}							{S_0, A_4}									B		{G1_11, J_9}		{G1_11, J_9}
+4		{G1_12, D_5, F_10, J_12, G1_11, J_9}		{S_0, A_4, C_3}								G1		{}					{}
+
+
+Depth-First search
+Step#	OPEN										CLOSED										X		CHILDREN			RemainingCHILDREN
+1		{S_0}										{}											S		{A_4, C_3}			{A_4, C_3}
+2		{C_3, A_4}									{S_0}										C		{D_5, F_10, J_12}	{D_5, F_10, J_12}
+3		{D_5, F_10, J_12, A_4}						{S_0, C_3}									D		{E_7, F_6}			{E_7, F_6}
+4		{F_6, E_7, F_10, J_12, A_4}					{S_0, C_3, D_5}								F		{G2_8}				{G2_8}
+5		{G2_8, F_6, E_7, F_10, J_12, A_4}			{S_0, C_3, D_5, F_6}						G2
+
+Best-First search 
+Step#	OPEN										CLOSED										X		CHILDREN			RemainingCHILDREN
+1		{S_0}										{}											S		{A_4, C_3}			{A_4, C_3}
+2		{C_3, A_4}									{S_0}										C		{D_5, F_10, J_12}	{D_5, F_10, J_12}
+3		{A_4, D_5, F_10, J_12}						{S_0, C_3}									A		{B_7, G1_12}		{B_7, G1_12}
+4		{D_5, B_7, F_10, J_12, G1_12}				{S_0, C_3, A_4}								D		{E_7, F_6}			{E_7, F_6}
+5		{F_6, B_7, E_7, J_12, G1_12}				{S_0, C_3, A_4, D_5}						F		{G2_10}				{G2_10}
+6		{B_7, E_7, G2_10, J_12, G1_12}				{S_0, C_3, A_4, D_5, F_6}					B		{G1_11, J_9}		{G1_11, J_9}
+7		{E_7, J_9, G2_10, G1_11}					{S_0, C_3, A_4, D_5, F_6, B_7}				E		{F_10, G2_13}		{}
+8		{J_9, G2_10, G1_11}							{S_0, C_3, A_4, D_5, F_6, B_7, E_7}			J		{G1_10, F_14}		{G1_10}
+9		{G2_10, G1_10}								{S_0, C_3, A_4, D_5, F_6, B_7, E_7, J_9}	G
+
+
+Best-First search 
+Step#	OPEN										CLOSED										X		CHILDREN			RemainingCHILDREN
+1		{S_0}										{}											S		{A_4, C_3}			{A_4, C_3}
+2		{C_3, A_4}									{S_0}										C		{D_5, F_10, J_12}	{D_5, F_10, J_12}
+3		{A_4, D_5, F_10, J_12}						{S_0, C_3}									A		{B_7, G1_12}		{B_7, G1_12}
+4		{D_5, B_7, F_10, G1_12, J_12}				{S_0, C_3, A_4}								D		{E_7, F_6}			{E_7, F_6}
+5		{B_7, F_10, G1_12, J_12}					{S_0, C_3, A_4, D_5}						B		{G1_11, J_9}		{G1_11, J_9}
+6		{F_10, G1_12, J_12}							{S_0, C_3, A_4, D_5, B_7}					F		{G2_10}				{G2_10}
+7		{G1_12, J_12, G2_10}						{S_0, C_3, A_4, D_5, B_7, F_10}				G
+
+
+5		{F_6, B_7, E_7, J_12, G1_12}				{S_0, C_3, A_4, D_5}						F		{G2_10}				{G2_10}
+6		{B_7, E_7, G2_10, J_12, G1_12}				{S_0, C_3, A_4, D_5, F_6}					B		{G1_11, J_9}		{G1_11, J_9}
+7		{E_7, J_9, G2_10, G1_11}					{S_0, C_3, A_4, D_5, F_6, B_7}				E		{F_10, G2_13}		{}
+8		{J_9, G2_10, G1_11}							{S_0, C_3, A_4, D_5, F_6, B_7, E_7}			J		{G1_10, F_14}		{G1_10}
+9		{G2_10, G1_10}								{S_0, C_3, A_4, D_5, F_6, B_7, E_7, J_9}	G
+
+
+
+Breadth-First search 
+Step#	OPEN										CLOSED										X		CHILDREN			RemainingCHILDREN
+1		{S_0}										{}											S		{A_4, C_3}			{A_4, C_3}
+2		{C_3, A_4}									{S_0}										C		{D_5, F_10, J_12}	{D_5, F_10, J_12}
+3		{A_4, D_5, F_10, J_12}						{S_0, C_3}									A		{B_7, G1_12}		{B_7, G1_12}
+4		{D_5, F_10, J_12, B_7, G1_12, E_7}			{S_0, C_3, A_4}								D		{E_7, F_6}			{E_7, F_6}
+5		{F_6, J_12, B_7, G1_12, E_7}				{S_0, C_3, A_4, D_5}						F		{G2_8}				{G2_8}
+6		{J_12, B_7, G1_12, E_7, G2_8}				{S_0, C_3, A_4, D_5, F_6}					J		{G1_13, F_17}		{}
+7		{B_7, G1_12, E_7, G2_8}						{S_0, C_3, A_4, D_5, F_6, J_12}				B		{G1_11, J_9}		{G1_11, J_9}
+8		{G1_11, E_7, G2_8, J_9}						{S_0, C_3, A_4, D_5, F_6, J_12, B_7}		G1
+
+Hill-climbing
+	front - sorted
+
+Beam search
+	keep w best
+
+Uniform cost
+
+Best-first
+	skips around based on what's closest to goal
+	
+Is this h function admissible? Explain your answer.
+	No. It's close, but the h value at D is 5, and there is a patth from D to G2 with cost 1 + 2 = 3.
+
+
+
+
+
+
+
+
+
